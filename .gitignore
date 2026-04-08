@@ -1,0 +1,6 @@
+__pycache__/
+*.pyc
+.DS_Store
+Thumbs.db
+输出/
+生成后大取证单/
