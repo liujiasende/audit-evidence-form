@@ -12,20 +12,21 @@
 
 ## 依赖
 
-- Python 3.8+
-- openpyxl、python-docx、lxml
+**无需安装 Python！** 技能目录自带 `取证单生成工具.exe`，开箱即用。
 
-安装命令：
-```bash
-pip install openpyxl python-docx lxml
-```
-
-> **免安装版本**：如需免装 Python 的独立 EXE 版本，可从 [GitHub Release](https://github.com/) 下载（链接待补充）。
+如系统已有 Python 3.8+，也可用脚本方式运行（需安装 openpyxl、python-docx、lxml）。
 
 ## 工具位置
 
-- **脚本路径**：技能目录下 `取证单生成CLI.py`
-- **运行方式**：`python <技能目录>/取证单生成CLI.py`
+- **EXE（推荐，免装Python）**：技能目录下 `取证单生成工具.exe`
+- **Python 脚本**：技能目录下 `取证单生成CLI.py`
+- **示例文件**：技能目录下 `examples/`
+
+## 运行方式
+
+AutoClaw 应自动检测运行方式：
+1. 优先使用 EXE：`"<技能目录>/取证单生成工具.exe"`
+2. EXE 不存在时回退 Python：`python "<技能目录>/取证单生成CLI.py"`
 
 ## Excel 输入格式要求
 
@@ -48,7 +49,12 @@ Excel 第一行为表头，从第二行开始为数据，列结构：
 
 ## 调用方式
 
-### 基本调用
+### 基本调用（EXE，免装Python）
+```bash
+"<技能目录>/取证单生成工具.exe" --excel "<Excel路径>" --template "<Word模板路径>" --output "<输出目录>"
+```
+
+### 基本调用（Python）
 ```bash
 python "<技能目录>/取证单生成CLI.py" --excel "<Excel路径>" --template "<Word模板路径>" --output "<输出目录>"
 ```
@@ -87,9 +93,13 @@ python "<技能目录>/取证单生成CLI.py" --excel "<Excel路径>" --template
 
 用户："帮我用 D:\问题清单.xlsx 和 D:\模板.docx 生成取证单"
 
-→ 执行：
+→ 执行（优先EXE）：
 ```bash
-python "取证单生成CLI.py" -e "D:\问题清单.xlsx" -t "D:\模板.docx"
+"<技能目录>/取证单生成工具.exe" -e "D:\问题清单.xlsx" -t "D:\模板.docx"
+```
+或（有Python时）：
+```bash
+python "<技能目录>/取证单生成CLI.py" -e "D:\问题清单.xlsx" -t "D:\模板.docx"
 ```
 
 → 汇报：生成完成，X条记录，Y个取证单，输出到 Z
@@ -98,9 +108,10 @@ python "取证单生成CLI.py" -e "D:\问题清单.xlsx" -t "D:\模板.docx"
 
 - 如果用户只给了一个文件路径，需要追问另一个（Excel和模板缺一不可）
 - 输出目录不存在会自动创建
-- 如遇依赖缺失报错，提醒用户先安装依赖：`pip install openpyxl python-docx lxml`
+- **无需Python**：EXE 版本开箱即用，无需安装任何依赖
 
 ## 变更记录
 
+- v1.2.0：添加 examples/ 示例目录；SKILL.md 支持免 Python 运行（优先 EXE）
 - v1.1.0：移除自动安装依赖逻辑，改为手动安装提示；路径改为相对路径，兼容所有环境
 - v1.0.0：初始版本
